@@ -269,6 +269,138 @@
         // Load initial content (About UCHA)
         loadContent('about-ucha');
     </script>
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>致「宇宙數位文化典藏協會」（UCHA）共同發起人的致詞</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #0056b3;
+            color: white;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            margin-bottom: 20px;
+        }
+        header h1 { margin: 0; font-size: 2.5em; }
+        #navigation {
+            flex: 0 0 250px;
+            background-color: #e9ecef;
+            padding: 20px;
+            border-right: 1px solid #dee2e6;
+            overflow-y: auto;
+        }
+        #navigation h2 {
+            margin-top: 0;
+            color: #0056b3;
+            font-size: 1.3em;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        #navigation ul { list-style: none; padding: 0; margin: 0; }
+        #navigation li { margin-bottom: 10px; }
+        .founder-link {
+            display: block;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+            font-size: 1.05em;
+        }
+        .founder-link:hover { background-color: #0056b3; transform: translateX(5px); }
+        .founder-link.active { background-color: #28a745; font-weight: bold; }
+        #main-content { flex: 1; padding: 30px; overflow-y: auto; }
+        #main-content h2 { color: #0056b3; font-size: 2em; margin-top: 0; margin-bottom: 20px; }
+        #main-content h3 { color: #007bff; font-size: 1.5em; margin-top: 25px; margin-bottom: 15px; }
+        #main-content p { margin-bottom: 15px; text-align: justify; }
+        .founder-image { max-width: 300px; display: block; margin: 20px auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        #declaration-video { text-align: center; margin-top: 40px; }
+        #declaration-video h3 { color: #0056b3; }
+        #declaration-video video { max-width: 100%; border: 1px solid #ccc; border-radius: 8px; }
+        strong { color: #0056b3; }
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            #navigation { width: 100%; border-right: none; border-bottom: 1px solid #dee2e6; }
+            #navigation ul { display: flex; flex-wrap: wrap; justify-content: center; }
+            #navigation li { flex: 1 1 auto; min-width: 150px; margin: 5px; }
+            .founder-link { text-align: center; }
+            #main-content { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>致「宇宙數位文化典藏協會」（UCHA）共同發起人的致詞</h1>
+    </header>
+    <div class="container">
+        <div id="navigation">
+            <h2>共同發起人</h2>
+            <ul>
+                <!-- navigation items -->
+                <li><a href="#" data-founder-id="about-ucha" class="founder-link active">關於 UCHA</a></li>
+                <!-- other items omitted for brevity -->
+            </ul>
+        </div>
+        <div id="main-content"></div>
+    </div>
+    <script>
+        const foundersData = {
+            "about-ucha": {
+                title: "宇宙數位文化典藏協會 (UCHA)",
+                content: `
+                    <p>值此「宇宙數位文化典藏協會」（UCHA）正式啟航之際，謹向各位發起人致以最誠摯的敬意與感謝......</p>
+                    <!-- 略寫英文宣言內容 -->
+                    <h3>協會宣言影片</h3>
+                    <div id="declaration-video">
+                      <video controls poster="images/declaration-poster.jpg">
+                        <source src="videos/Declaration.mp4" type="video/mp4">
+                        您的瀏覽器不支援影片播放。
+                      </video>
+                    </div>
+                `
+            },
+            // 其餘 foundersData 項目保持不變
+        };
+        const mainContentDiv = document.getElementById('main-content');
+        const links = document.querySelectorAll('.founder-link');
+        function loadContent(id) {
+            const data = foundersData[id];
+            mainContentDiv.innerHTML = `<h2>${data.title}</h2>${data.content}`;
+            links.forEach(a=>a.classList.remove('active'));
+            document.querySelector(`.founder-link[data-founder-id="${id}"]`).classList.add('active');
+        }
+        links.forEach(a=>a.addEventListener('click', e=>{e.preventDefault(); loadContent(e.target.dataset.founderId);}));
+        loadContent('about-ucha');
+    </script>
+    <footer style="text-align:center; padding:15px 0; font-size:0.85em; color:#777;">
+      © 2025 NFTsVERSE ART 與 宇宙數位文化典藏協會 (UCHA)。保留所有權利。
+    </footer>
+</body>
+</html>
  <!-- 版權聲明 -->
     <footer style="text-align:center; padding:15px 0; font-size:0.85em; color:#777;">
       © 2025 NFTsVERSE ART 與 宇宙數位文化典藏協會 (UCHA)。保留所有權利。
